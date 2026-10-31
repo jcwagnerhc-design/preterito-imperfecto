@@ -1,0 +1,659 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Pretérito o Imperfecto</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: a single narrow column, like a school exercise card, under an azulejo-tiled header band. */
+:root{
+  --bg:#EDF1F6; --surface:#FFFFFF; --surface-2:#F5F7FB; --ink:#13203A; --muted:#5A6882; --line:#D3DBE7;
+  --accent:#1D4FA6; --accent-ink:#FFFFFF; --sun:#D4931A; --sun-soft:#FBF0D9;
+  --pret:#B3263F; --pret-soft:#F9E3E7; --imp:#0E7A74; --imp-soft:#DDF2F0;
+  --good:#1E8449; --mid:#B9770E; --bad:#B3263F;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1422; --surface:#162034; --surface-2:#1C2840; --ink:#E6ECF5; --muted:#9AA8C0; --line:#2B3854;
+  --accent:#7EA5F2; --accent-ink:#0D1422; --sun:#F0B84A; --sun-soft:#3A2F17;
+  --pret:#F27A8F; --pret-soft:#3D1E27; --imp:#4FC9C0; --imp-soft:#123634;
+  --good:#5BD18A; --mid:#F0B84A; --bad:#F27A8F; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0D1422; --surface:#162034; --surface-2:#1C2840; --ink:#E6ECF5; --muted:#9AA8C0; --line:#2B3854;
+  --accent:#7EA5F2; --accent-ink:#0D1422; --sun:#F0B84A; --sun-soft:#3A2F17;
+  --pret:#F27A8F; --pret-soft:#3D1E27; --imp:#4FC9C0; --imp-soft:#123634;
+  --good:#5BD18A; --mid:#F0B84A; --bad:#F27A8F; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);}
+.band{
+  background-color:var(--accent);
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--sun) 0 9%, transparent 10%),
+    conic-gradient(from 45deg at 50% 50%, rgba(255,255,255,.16) 0 25%, transparent 0 50%, rgba(255,255,255,.16) 0 75%, transparent 0),
+    radial-gradient(circle at 0 0, rgba(255,255,255,.22) 0 22%, transparent 23%),
+    radial-gradient(circle at 100% 100%, rgba(255,255,255,.22) 0 22%, transparent 23%),
+    radial-gradient(circle at 100% 0, rgba(255,255,255,.22) 0 22%, transparent 23%),
+    radial-gradient(circle at 0 100%, rgba(255,255,255,.22) 0 22%, transparent 23%);
+  background-size:44px 44px; height:14px;
+}
+.wrap{max-width:760px;margin:0 auto;padding-block:22px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
+  display:flex;flex-direction:column;gap:18px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.tile{width:42px;height:42px;border-radius:8px;flex:none;background-color:var(--accent);
+  background-image:radial-gradient(circle, var(--sun) 0 18%, transparent 19%),
+  conic-gradient(from 45deg, rgba(255,255,255,.25) 0 25%, transparent 0 50%, rgba(255,255,255,.25) 0 75%, transparent 0);}
+.brand b{display:block;font:800 1.15rem/1.1 var(--f-display);letter-spacing:-.01em}
+.brand small{color:var(--muted);font-size:.82rem}
+.scorebox{font:700 .95rem var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+.scorebox strong{color:var(--ink);font-size:1.15rem}
+
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(2rem,6vw,3rem);font-weight:800;line-height:1.02}
+h2{font-size:1.6rem;font-weight:800;line-height:1.1}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:700 .74rem var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}
+.muted{color:var(--muted)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.legend{grid-template-columns:1fr}}
+.lg{border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.lg.p{background:var(--pret-soft)} .lg.i{background:var(--imp-soft)}
+.lg h3{display:flex;align-items:center;gap:10px}
+.lg.p h3{color:var(--pret)} .lg.i h3{color:var(--imp)}
+.lg ul{margin:0;padding-left:18px;font-size:.92rem}
+.mark{flex:none;width:44px;height:14px;position:relative}
+.mark.p::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor;opacity:.35}
+.mark.p::after{content:"";position:absolute;left:16px;top:1px;width:12px;height:12px;border-radius:50%;background:currentColor}
+.mark.i{background:linear-gradient(currentColor,currentColor) 0 6px/100% 2px no-repeat;opacity:1}
+.mark.i::before{content:"";position:absolute;left:0;right:0;top:3px;height:8px;border-radius:4px;background:currentColor;opacity:.3}
+
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:560px){.rules{grid-template-columns:1fr}}
+.rule{background:var(--surface-2);border-radius:10px;padding:12px;font-size:.9rem}
+.rule b{display:block;font:800 1.4rem var(--f-display);color:var(--accent)}
+
+.rounds{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+@media (max-width:560px){.rounds{grid-template-columns:repeat(2,1fr)}}
+.rchip{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.8rem;line-height:1.3;background:var(--surface-2);min-width:0}
+.rchip b{display:block;font:700 .72rem var(--f-mono);color:var(--muted)}
+.rchip.done{border-color:var(--good)}
+.rchip.done b{color:var(--good)}
+
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:inherit;cursor:pointer}
+.btn{border:0;border-radius:10px;padding:12px 20px;font:700 1rem var(--f-body);background:var(--accent);color:var(--accent-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn.quiet{background:transparent;color:var(--muted);padding:12px 8px;text-decoration:underline;text-underline-offset:3px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* play */
+.roundhead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.dots{display:flex;gap:6px}
+.dot{width:22px;height:8px;border-radius:4px;background:var(--line)}
+.dot.now{background:var(--accent)}
+.dot.g{background:var(--good)} .dot.m{background:var(--mid)} .dot.b{background:var(--bad)}
+.sentence{font-size:clamp(1.15rem,3.4vw,1.42rem);line-height:1.9;font-weight:500}
+.blank{font:700 1em var(--f-mono);color:var(--accent);background:var(--surface-2);border:0;border-bottom:2.5px solid var(--accent);
+  border-radius:6px 6px 0 0;padding:0 8px;width:10ch;max-width:100%;text-align:center}
+.blank:disabled{color:var(--ink);opacity:1}
+.filled{font-family:var(--f-mono);font-weight:700;padding:0 4px;border-radius:4px}
+.filled.p{color:var(--pret);background:var(--pret-soft)} .filled.i{color:var(--imp);background:var(--imp-soft)}
+.verb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.95rem}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 12px;font-weight:600;font-size:.86rem;background:var(--surface-2);border:1px solid var(--line)}
+.pill.inf{font-family:var(--f-mono);font-weight:700;color:var(--accent)}
+.pill.p{background:var(--pret-soft);color:var(--pret);border-color:transparent}
+.pill.i{background:var(--imp-soft);color:var(--imp);border-color:transparent}
+.keys{display:flex;gap:6px;flex-wrap:wrap}
+.key{width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font:700 1.05rem var(--f-mono)}
+.key:hover{border-color:var(--accent)}
+.tries{font-size:.85rem;color:var(--muted)}
+.clue{background:var(--sun-soft);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.clue .lab{font:800 .74rem var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--mid)}
+.clue p{font-size:.96rem}
+.result{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;border:1.5px solid var(--line)}
+.result.g{border-color:var(--good)} .result.m{border-color:var(--mid)} .result.b{border-color:var(--bad)}
+.pts{font:800 2rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.result.g .pts{color:var(--good)} .result.m .pts{color:var(--mid)} .result.b .pts{color:var(--bad)}
+.resulthead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.notice{color:var(--bad);font-size:.9rem;min-height:1.2em}
+@keyframes nudge{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.shake{animation:nudge .25s 2}
+@media (prefers-reduced-motion:reduce){.shake{animation:none}}
+
+/* round end */
+.big{font:800 clamp(2.6rem,9vw,3.6rem)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.big small{font-size:.4em;color:var(--muted);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:560px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--surface-2);border-radius:10px;padding:12px}
+.stat b{display:block;font:800 1.35rem var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:.84rem;color:var(--muted)}
+.encourage{background:var(--imp-soft);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.encourage .es{font:700 1.15rem var(--f-display);color:var(--imp)}
+.review{display:flex;flex-direction:column}
+.rv{display:grid;grid-template-columns:2.2rem 1fr auto;gap:10px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline;font-size:.93rem}
+.rv:first-child{border-top:0}
+.rv .n{font:700 .8rem var(--f-mono);color:var(--muted)}
+.rv .s{min-width:0}
+.rv .s em{font-style:normal;color:var(--muted);font-size:.84rem;display:block}
+.rv .p{font:700 .95rem var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:5.6rem 1fr 3.4rem;gap:10px;align-items:center;font-size:.86rem}
+.bar .track{height:12px;background:var(--surface-2);border-radius:6px;overflow:hidden}
+.bar .fill{height:100%;border-radius:6px;background:var(--accent)}
+.bar .v{font:700 .85rem var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:.8rem;text-align:center}
+</style>
+
+<div class="band" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="tile" aria-hidden="true"></div>
+      <div><b>Internado Valdelira</b><small>Pretérito o imperfecto · Español</small></div>
+    </div>
+    <div class="scorebox" id="scorebox" hidden></div>
+  </header>
+  <main id="app"></main>
+  <footer>10 rondas · 10 frases · hasta 10 puntos por verbo</footer>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+/* item: [sentence, infinitive, person, answer, other-tense form, "P"|"I", why] */
+const ROUNDS = [
+{ t:"La llegada a la residencia", en:"Arrival at the dorms", intro:"Es septiembre y empiezas tu primer año en el Internado Valdelira, en la sierra de Salamanca.", items:[
+["El primer día de septiembre, mis padres me ___ a la residencia en coche.","llevar","ellos","llevaron","llevaban","P","A single, completed event on a specific day ('el primer día de septiembre') calls for the preterite."],
+["Mi compañera de cuarto, Lucía, ___ de Sevilla y hablaba muy rápido.","ser","ella","era","fue","I","This describes who someone was (origin, characteristics). Background descriptions of people use the imperfect."],
+["La habitación ___ dos camas, un armario enorme y una ventana con vistas a la sierra.","tener","ella (la habitación)","tenía","tuvo","I","You are describing what the room looked like. Physical descriptions of places use the imperfect."],
+["Esa tarde, yo ___ toda mi ropa en el armario en menos de una hora.","poner","yo","puse","ponía","P","'Esa tarde' and 'en menos de una hora' mark a finished task with a clear end. Use the preterite."],
+["Mientras Lucía ___ su maleta, sonó el timbre de la cena.","abrir","ella","abría","abrió","I","'Mientras' signals an action in progress that gets interrupted (by 'sonó'). The ongoing action takes the imperfect."],
+["De repente, la directora de la residencia ___ a la puerta para presentarse.","llamar","ella","llamó","llamaba","P","'De repente' (suddenly) introduces a single action that happens at one moment. Use the preterite."],
+["Todas las noches, la monitora ___ las luces a las once en punto.","apagar","ella","apagaba","apagó","I","'Todas las noches' signals a habitual, repeated action. Habits in the past use the imperfect."],
+["La primera noche, nosotras no ___ dormir por los nervios.","poder","nosotras","pudimos","podíamos","P","One specific night ('la primera noche'). 'No pudimos' means we tried and failed, a completed outcome, so use the preterite."],
+["Eran las diez de la noche y ___ mucho frío en el pasillo.","hacer","impersonal","hacía","hizo","I","Time and weather set the scene. Background conditions like 'hacer frío' take the imperfect."],
+["El primer domingo, vosotros les ___ una carta a vuestras familias.","escribir","vosotros","escribisteis","escribíais","P","'El primer domingo' points to one completed action on a specific day. Use the preterite."]
+]},
+{ t:"El equipo de fútbol", en:"The football team", intro:"Te apuntas al equipo de fútbol del internado. ¡Hay partido el sábado!", items:[
+["Cuando yo ___ doce años, empecé a jugar al fútbol.","tener","yo","tenía","tuve","I","Age in the past is background information. Always use the imperfect for age: 'tenía ... años'."],
+["Los martes y jueves, el equipo ___ en el campo después de clase.","entrenar","él (el equipo)","entrenaba","entrenó","I","'Los martes y jueves' describes a regular routine. Repeated, habitual actions use the imperfect."],
+["El sábado pasado, nosotros ___ contra el Internado San Telmo.","jugar","nosotros","jugamos","jugábamos","P","'El sábado pasado' points to one specific, finished event. Use the preterite."],
+["Yo ___ el primer gol en el minuto diez.","marcar","yo","marqué","marcaba","P","A single action at an exact moment ('en el minuto diez'). Use the preterite."],
+["El entrenador siempre ___ en la banda con su silbato rojo.","estar","él","estaba","estuvo","I","'Siempre' signals what usually happened. Habitual situations use the imperfect."],
+["Durante el partido, ___ y el campo estaba lleno de barro.","llover","impersonal","llovía","llovió","I","The rain is the background scene of the match (like 'estaba lleno de barro'). Weather as background takes the imperfect."],
+["En el segundo tiempo, Javier se ___ y se torció el tobillo.","caer","él","cayó","caía","P","A sudden event followed by another completed one ('se torció'). A sequence of completed actions uses the preterite."],
+["Al final, vosotros ___ el partido tres a uno.","ganar","vosotros","ganasteis","ganabais","P","'Al final' marks the completed result. Outcomes and endings use the preterite."],
+["Los aficionados ___ y aplaudían sin parar mientras el equipo celebraba.","gritar","ellos","gritaban","gritaron","I","Several actions were happening at the same time ('aplaudían', 'mientras... celebraba'). Simultaneous ongoing actions take the imperfect."],
+["Después del partido, el entrenador nos ___ que estaba muy orgulloso.","decir","él","dijo","decía","P","'Después del partido' places one completed statement at a specific moment. Use the preterite."]
+]},
+{ t:"Las clases", en:"Classes", intro:"Entre semana, las clases empiezan a las ocho y media en el edificio principal.", items:[
+["Cada mañana, la profesora de historia ___ la clase con una pregunta.","comenzar","ella","comenzaba","comenzó","I","'Cada mañana' signals a repeated routine. Habitual actions use the imperfect."],
+["El lunes, tú ___ tarde a clase de matemáticas.","llegar","tú","llegaste","llegabas","P","'El lunes' refers to one specific occasion. A single completed event uses the preterite."],
+["Anoche yo ___ el trabajo de biología a las once.","empezar","yo","empecé","empezaba","P","'Anoche' and 'a las once' pin the action to one moment: you started it then. Beginnings of actions use the preterite."],
+["El profesor de física ___ alto, tenía barba y llevaba siempre una corbata verde.","ser","él","era","fue","I","This is a physical description of a person. Descriptions use the imperfect."],
+["Ayer los alumnos de bachillerato ___ el examen de química en dos horas.","hacer","ellos","hicieron","hacían","P","'Ayer' plus a completed task with a set duration ('en dos horas'). Use the preterite."],
+["Mientras el profesor ___ la lección, Marta le pasaba notas a su amiga.","explicar","él","explicaba","explicó","I","'Mientras' links two ongoing actions happening at the same time. Both take the imperfect."],
+["En la clase de literatura, nosotros ___ poemas de Lorca todos los viernes.","leer","nosotros","leíamos","leímos","I","'Todos los viernes' signals a weekly habit. Repeated actions use the imperfect."],
+["Esta mañana, la directora ___ a la clase sin avisar.","venir","ella","vino","venía","P","'Esta mañana' (already over) and 'sin avisar' describe one surprise visit. Use the preterite."],
+["En primero de ESO, yo nunca ___ las respuestas en francés.","saber","yo","sabía","supe","I","'Nunca' over a whole school year describes an ongoing state of knowing. States of mind and knowledge in the past usually take the imperfect."],
+["Ayer vosotros no ___ los libros de latín a clase.","traer","vosotros","trajisteis","traíais","P","'Ayer' points to one specific day and one completed (or failed) action. Use the preterite."]
+]},
+{ t:"El comedor", en:"The dining hall", intro:"Tres comidas al día en el gran comedor, y los domingos hay churros.", items:[
+["El comedor ___ el desayuno a las siete y media todos los días.","servir","él (el comedor)","servía","sirvió","I","'Todos los días' signals a daily routine. Habitual actions use the imperfect."],
+["Esta mañana, la cocinera ___ churros con chocolate para todos.","preparar","ella","preparó","preparaba","P","'Esta mañana' refers to one completed action in a finished time period. Use the preterite."],
+["Yo ___ tres churros y luego me dolió el estómago.","comer","yo","comí","comía","P","A sequence of completed actions ('y luego me dolió'). Each step in a sequence uses the preterite."],
+["Normalmente, mis amigos y yo ___ en la mesa junto a la ventana.","almorzar","nosotros","almorzábamos","almorzamos","I","'Normalmente' signals what usually happened. Habits use the imperfect."],
+["El lunes, Pablo ___ dos platos de paella porque tenía muchísima hambre.","pedir","él","pidió","pedía","P","'El lunes' marks a specific, completed action. ('Tenía hambre' is the background reason, so it is imperfect.)"],
+["Cuando entramos al comedor, ___ un olor delicioso a tortilla.","haber","impersonal","había","hubo","I","You are describing what the room was like when you walked in. Descriptions of the scene use the imperfect."],
+["Los camareros ___ las mesas mientras los alumnos hacían cola.","poner","ellos","ponían","pusieron","I","'Mientras' plus another ongoing action ('hacían cola'). Simultaneous actions in progress take the imperfect."],
+["Anoche nosotros ___ tarde al comedor y no quedaba postre.","llegar","nosotros","llegamos","llegábamos","P","'Anoche' marks one specific arrival. ('No quedaba postre' is the background situation.) Use the preterite."],
+["Tú siempre ___ yogur de fresa en la merienda.","preferir","tú","preferías","preferiste","I","'Siempre' plus a preference, which is an ongoing state. Use the imperfect."],
+["El domingo, los cocineros ___ una tarta enorme para el cumpleaños de Sofía.","decorar","ellos","decoraron","decoraban","P","'El domingo' refers to one completed task for a specific event. Use the preterite."]
+]},
+{ t:"El club de teatro", en:"The drama club", intro:"El club de teatro prepara su gran estreno en el salón de actos.", items:[
+["El año pasado, el club de teatro ___ «La casa de Bernarda Alba».","representar","él (el club)","representó","representaba","P","'El año pasado' frames a single completed production. Use the preterite."],
+["Durante los ensayos, la directora del club ___ muy exigente.","ser","ella","era","fue","I","This describes her character during an ongoing period. Personality and descriptions use the imperfect."],
+["Yo ___ mi papel de memoria en solo una semana.","aprender","yo","aprendí","aprendía","P","'En solo una semana' tells how long it took to complete the task. A finished achievement uses the preterite."],
+["Todos los miércoles, nosotros ___ en el salón de actos hasta las nueve.","ensayar","nosotros","ensayábamos","ensayamos","I","'Todos los miércoles' signals a weekly routine. Habitual actions use the imperfect."],
+["La noche del estreno, mis padres ___ desde Madrid para verme.","venir","ellos","vinieron","venían","P","'La noche del estreno' is one specific occasion. A single completed trip uses the preterite."],
+["Cuando se abrió el telón, el teatro ___ lleno de gente.","estar","él (el teatro)","estaba","estuvo","I","You are describing the scene at that moment. Descriptions of how things were use the imperfect."],
+["Mientras yo ___ mi monólogo, a Carlos se le cayó la peluca.","recitar","yo","recitaba","recité","I","Your monologue was in progress when something interrupted it ('se le cayó'). The ongoing action takes the imperfect."],
+["Al final, el público ___ de pie durante cinco minutos.","aplaudir","él (el público)","aplaudió","aplaudía","P","'Al final' and a limited duration ('durante cinco minutos') describe a completed reaction. Use the preterite."],
+["Después de la función, vosotros ___ flores a todas las actrices.","dar","vosotros","disteis","dabais","P","'Después de la función' places one completed action at a specific time. Use the preterite."],
+["Antes de salir al escenario, Elena ___ ver a su familia en el público.","querer","ella","quería","quiso","I","This describes a wish or desire she had, a mental state. States of mind use the imperfect."]
+]},
+{ t:"Excursión a Segovia", en:"School trip to Segovia", intro:"El internado organiza una excursión de un día a Segovia.", items:[
+["En noviembre, el internado ___ una excursión a Segovia.","organizar","él (el internado)","organizó","organizaba","P","One specific trip in a specific month. A single completed event uses the preterite."],
+["El autobús ___ a las ocho en punto de la mañana.","salir","él (el autobús)","salió","salía","P","An exact moment ('a las ocho en punto') for one departure. Use the preterite."],
+["Durante el viaje, yo ___ por la ventana y escuchaba música.","mirar","yo","miraba","miré","I","Two actions in progress at the same time during the trip ('escuchaba'). Ongoing background actions use the imperfect."],
+["La ciudad ___ sacada de un cuento de hadas.","parecer","ella (la ciudad)","parecía","pareció","I","This is a description of how the city looked. Descriptions use the imperfect."],
+["Al llegar, nosotros ___ el acueducto romano.","ver","nosotros","vimos","veíamos","P","'Al llegar' (upon arriving) marks one completed action. Use the preterite."],
+["El guía nos ___ la historia del Alcázar durante una hora.","contar","él","contó","contaba","P","A specific, limited duration ('durante una hora') wraps the action up as complete. Use the preterite."],
+["Mientras el guía hablaba, Diego y Nuria ___ fotos sin parar.","sacar","ellos","sacaban","sacaron","I","'Mientras' plus another ongoing action ('hablaba'). Simultaneous actions in progress use the imperfect."],
+["A mediodía, tú ___ cochinillo por primera vez.","probar","tú","probaste","probabas","P","'Por primera vez' marks a one-time event. Use the preterite."],
+["En el viaje de vuelta, casi todos los alumnos ___ cuando el autobús paró de repente.","dormir","ellos","dormían","durmieron","I","They were in the middle of sleeping when something interrupted ('paró de repente'). The interrupted action takes the imperfect."],
+["Esa noche, yo ___ en mi diario todo lo que vi.","escribir","yo","escribí","escribía","P","'Esa noche' marks one completed action. Use the preterite."]
+]},
+{ t:"Piscina y pista", en:"Pool and court", intro:"Natación por la mañana, baloncesto por la tarde: el polideportivo nunca duerme.", items:[
+["Andrea ___ en la piscina cada día a las seis de la mañana.","nadar","ella","nadaba","nadó","I","'Cada día' signals a daily habit. Habitual actions use the imperfect."],
+["En la competición regional, Andrea ___ los cien metros en un minuto exacto.","terminar","ella","terminó","terminaba","P","One race with a completed result ('en un minuto exacto'). Use the preterite."],
+["El agua de la piscina siempre ___ muy fría en invierno.","estar","ella (el agua)","estaba","estuvo","I","'Siempre' describes a usual condition. Use the imperfect."],
+["En la final del torneo de baloncesto, nuestro equipo ___ contra Valencia.","perder","él (el equipo)","perdió","perdía","P","'En la final' is one specific game with a completed outcome. Use the preterite."],
+["En el torneo, yo ___ a una jugadora de la selección española.","conocer","yo","conocí","conocía","P","'Conocer' in the preterite means 'met for the first time', which happened once. Use the preterite."],
+["Antes de cada partido, los jugadores ___ el himno del internado.","cantar","ellos","cantaban","cantaron","I","'Antes de cada partido' signals a ritual repeated every game. Use the imperfect."],
+["En el último segundo, tú ___ la pelota desde el centro del campo.","lanzar","tú","lanzaste","lanzabas","P","'En el último segundo' is a precise moment for a single action. Use the preterite."],
+["Mientras nosotros ___ alrededor de la pista de atletismo, empezó a granizar.","correr","nosotros","corríamos","corrimos","I","You were running when the hail interrupted ('empezó'). The ongoing action takes the imperfect."],
+["El viernes, la entrenadora ___ el minibús hasta el polideportivo de Salamanca.","conducir","ella","condujo","conducía","P","'El viernes' marks one completed trip. Use the preterite."],
+["Los gemelos García ___ muy altos y siempre ganaban en los saltos.","ser","ellos","eran","fueron","I","This is a physical description ('muy altos'). Descriptions use the imperfect."]
+]},
+{ t:"Música y arte", en:"Music and art", intro:"El coro, la orquesta y el taller de arte llenan las tardes de color y sonido.", items:[
+["En el internado, el coro ___ en la capilla los viernes por la tarde.","practicar","él (el coro)","practicaba","practicó","I","'Los viernes por la tarde' describes a weekly routine. Habits use the imperfect."],
+["Yo ___ el piano en el concierto de Navidad.","tocar","yo","toqué","tocaba","P","One specific performance ('el concierto de Navidad'). Use the preterite."],
+["Mientras la orquesta ___, el público guardaba silencio.","tocar","ella (la orquesta)","tocaba","tocó","I","'Mientras' plus another ongoing action ('guardaba silencio'). Simultaneous background actions use the imperfect."],
+["La sala de arte siempre ___ a pintura y a barniz.","oler","ella (la sala)","olía","olió","I","'Siempre' plus a description of the room. Use the imperfect."],
+["El jueves pasado, vosotros ___ un mural en la pared del gimnasio.","pintar","vosotros","pintasteis","pintabais","P","'El jueves pasado' points to a finished project on a specific day. Use the preterite."],
+["Mi amiga Inés ___ tocar la guitarra muy bien; practicaba cada noche en su habitación.","saber","ella","sabía","supo","I","Knowing how to do something is an ongoing ability, not an event. Use the imperfect. (In the preterite, 'supo' means 'found out'.)"],
+["En el concierto, el director ___ un error y la orquesta paró.","cometer","él","cometió","cometía","P","A single mistake that caused another completed action ('la orquesta paró'). Use the preterite."],
+["Cuando el jurado anunció el ganador, nosotros ___ de alegría.","saltar","nosotros","saltamos","saltábamos","P","A sudden reaction to a specific event ('anunció'). Reactions at a precise moment use the preterite."],
+["Los domingos, Óscar y Leire ___ fotos del internado para el periódico escolar.","hacer","ellos","hacían","hicieron","I","'Los domingos' signals a weekly habit. Use the imperfect."],
+["Ayer, el periódico escolar ___ un artículo sobre nuestro concierto.","publicar","él (el periódico)","publicó","publicaba","P","'Ayer' points to one completed action. Use the preterite."]
+]},
+{ t:"Noches en la residencia", en:"Nights in the dorm", intro:"Cuando se apagan las luces, la residencia guarda algún que otro misterio.", items:[
+["Los sábados por la noche, nosotras ___ películas en la sala común.","ver","nosotras","veíamos","vimos","I","'Los sábados por la noche' signals a weekly habit. Use the imperfect."],
+["Una noche, Marta ___ un ruido extraño en el pasillo.","oír","ella","oyó","oía","P","'Una noche' introduces one specific event in the story. Use the preterite."],
+["___ las dos de la madrugada y todo estaba oscuro.","ser","ellas (las horas)","eran","fueron","I","Telling time in the past is always background. Use the imperfect ('eran las dos')."],
+["Nosotras ___ de la habitación en silencio para investigar.","salir","nosotras","salimos","salíamos","P","A step forward in the story: one completed action. Use the preterite."],
+["El ruido ___ del cuarto de la limpieza.","venir","él (el ruido)","venía","vino","I","The noise was continuing as the girls investigated. Ongoing background situations take the imperfect."],
+["Al abrir la puerta, nosotras ___ al gato de la cocinera.","encontrar","nosotras","encontramos","encontrábamos","P","'Al abrir la puerta' marks the moment of discovery, a single completed event. Use the preterite."],
+["El gato ___ negro y tenía los ojos amarillos.","ser","él (el gato)","era","fue","I","This is a physical description. Descriptions use the imperfect."],
+["El domingo por la mañana, tú le ___ a la monitora lo que pasó.","explicar","tú","explicaste","explicabas","P","'El domingo por la mañana' marks one specific conversation. Use the preterite."],
+["Cuando ___ al pueblo los domingos, siempre comprábamos helados.","ir","nosotros","íbamos","fuimos","I","'Los domingos' and 'siempre' signal a repeated habit. Use the imperfect."],
+["Ese fin de semana, mis amigos ___ a la residencia muy tarde y la monitora se enfadó.","volver","ellos","volvieron","volvían","P","'Ese fin de semana' marks one specific event with a consequence ('se enfadó'). Use the preterite."]
+]},
+{ t:"Fin de curso", en:"End of the school year", intro:"Llega junio: fiesta en el jardín, premios y despedidas.", items:[
+["En junio, el internado ___ una gran fiesta de fin de curso.","celebrar","él (el internado)","celebró","celebraba","P","One specific event in June. Use the preterite."],
+["Los farolillos de colores ___ en el jardín mientras sonaba la música.","brillar","ellos","brillaban","brillaron","I","'Mientras' plus another ongoing action ('sonaba'). The scene-setting action takes the imperfect."],
+["La directora ___ un discurso muy emotivo.","dar","ella","dio","daba","P","One speech given at the party, a single completed event. Use the preterite."],
+["Mientras ella hablaba, muchos alumnos ___.","llorar","ellos","lloraban","lloraron","I","'Mientras ella hablaba' frames actions in progress at the same time. Use the imperfect."],
+["Yo ___ el premio al mejor deportista del año.","recibir","yo","recibí","recibía","P","Receiving an award happens once, at a specific moment. Use the preterite."],
+["Mis abuelos ___ ochenta años, pero bailaron toda la noche.","tener","ellos","tenían","tuvieron","I","Age in the past is background information. Always use the imperfect for age."],
+["Esa noche, vosotros ___ hasta las tres de la madrugada.","bailar","vosotros","bailasteis","bailabais","P","A specific night with a clear end point ('hasta las tres'). Use the preterite."],
+["Durante cuatro años, yo ___ en la habitación 214.","vivir","yo","viví","vivía","P","A period with a definite length that is now over ('durante cuatro años') is viewed as a completed whole. Use the preterite."],
+["Al día siguiente, nosotros les ___ adiós a nuestros compañeros con un abrazo.","decir","nosotros","dijimos","decíamos","P","'Al día siguiente' marks one completed farewell. Use the preterite."],
+["En el tren de vuelta a casa, yo ___ en todos los buenos momentos mientras miraba por la ventana.","pensar","yo","pensaba","pensé","I","'Mientras miraba' frames a reflective, ongoing action. Use the imperfect."]
+]}
+];
+
+/* ---------- GRAMMAR HELPERS ---------- */
+const PRET_IRR = {
+  ser:"In the preterite, ser and ir share the same forms: fui, fuiste, fue, fuimos, fuisteis, fueron.",
+  ir:"In the preterite, ir and ser share the same forms: fui, fuiste, fue, fuimos, fuisteis, fueron.",
+  tener:"Tener has an irregular preterite stem, tuv-, plus the endings -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  estar:"Estar has an irregular preterite stem, estuv-, plus -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  poder:"Poder has an irregular preterite stem, pud-, plus -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  poner:"Poner has an irregular preterite stem, pus-, plus -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  saber:"Saber has an irregular preterite stem, sup-, plus -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  querer:"Querer has an irregular preterite stem, quis-, plus -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  venir:"Venir has an irregular preterite stem, vin-, plus -e, -iste, -o, -imos, -isteis, -ieron (no accents).",
+  haber:"Haber has an irregular preterite stem, hub- (hubo for 'there was').",
+  hacer:"Hacer has an irregular preterite stem, hic-, which becomes hiz- in the él/ella form (hizo). Endings: -e, -iste, -o, -imos, -isteis, -ieron.",
+  decir:"Decir has a j-stem in the preterite, dij-, with -e, -iste, -o, -imos, -isteis, and -eron (not -ieron) for ellos.",
+  traer:"Traer has a j-stem in the preterite, traj-, with -e, -iste, -o, -imos, -isteis, and -eron (not -ieron) for ellos.",
+  conducir:"Conducir has a j-stem in the preterite, conduj-, with -e, -iste, -o, -imos, -isteis, -eron.",
+  dar:"Dar is irregular: it uses -er/-ir endings with no accents: di, diste, dio, dimos, disteis, dieron.",
+  ver:"Ver in the preterite has no written accents: vi, viste, vio, vimos, visteis, vieron."
+};
+const Y_CHANGE = {caer:1, leer:1, "oír":1};
+const STEM_PRET = {servir:"e → i", pedir:"e → i", preferir:"e → i", dormir:"o → u"};
+const IMP_IRR = {
+  ser:"Ser is one of only three irregular verbs in the imperfect: era, eras, era, éramos, erais, eran.",
+  ir:"Ir is one of only three irregular verbs in the imperfect: iba, ibas, iba, íbamos, ibais, iban.",
+  ver:"Ver is one of only three irregular verbs in the imperfect: veía, veías, veía, veíamos, veíais, veían."
+};
+const ENDINGS = {
+  P:{ar:["-é","-aste","-ó","-amos","-asteis","-aron"], er:["-í","-iste","-ió","-imos","-isteis","-ieron"]},
+  I:{ar:["-aba","-abas","-aba","-ábamos","-abais","-aban"], er:["-ía","-ías","-ía","-íamos","-íais","-ían"]}
+};
+const PNAMES = ["yo","tú","él / ella","nosotros","vosotros","ellos / ellas"];
+function pIndex(p){
+  const w = p.split(" ")[0];
+  return ({yo:0,"tú":1,"él":2,ella:2,usted:2,impersonal:2,nosotros:3,nosotras:3,vosotros:4,vosotras:4,ellos:5,ellas:5,ustedes:5})[w] ?? 2;
+}
+function conj(v){ return v.endsWith("ar") ? "ar" : "er"; }
+function verbType(it){
+  const [,v,p,,,t] = it, k = pIndex(p);
+  if (t === "P"){
+    if (PRET_IRR[v]) return "Irregular";
+    if (STEM_PRET[v] && (k===2||k===5)) return "Stem change";
+    if (Y_CHANGE[v] && (k===2||k===5)) return "Spelling change (i → y)";
+    if (k===0 && /(car|gar|zar)$/.test(v)) return "Spelling change (yo)";
+    return "Regular";
+  }
+  return IMP_IRR[v] ? "Irregular" : "Regular";
+}
+function formHint(it){
+  const [,v,p,,,t] = it, k = pIndex(p), c = conj(v), tn = t==="P" ? "preterite" : "imperfect";
+  const who = p.startsWith("impersonal") ? "the él/ella form (it's impersonal)" : "the " + PNAMES[k] + " form";
+  if (t==="I"){
+    if (IMP_IRR[v]) return IMP_IRR[v] + " You need " + who + ".";
+    return "'" + v + "' is regular in the imperfect. -" + c + (c==="er" ? "/-ir" : "") + " endings: " + ENDINGS.I[c].join(", ") + ". You need " + who + ".";
+  }
+  if (PRET_IRR[v]) return PRET_IRR[v] + " You need " + who + ".";
+  const ends = "Preterite -" + c + (c==="er" ? "/-ir" : "") + " endings: " + ENDINGS.P[c].join(", ") + ".";
+  if (STEM_PRET[v]) return "'" + v + "' has a stem change (" + STEM_PRET[v] + ") in the preterite, but only in the él/ella and ellos/ellas forms. " + ends + " You need " + who + ".";
+  if (Y_CHANGE[v]) return "In '" + v + "', the i between two vowels becomes y in the él/ella and ellos forms (-yó, -yeron), and the other forms put an accent on the í. You need " + who + ".";
+  if (k===0 && /car$/.test(v)) return "Verbs ending in -car change c → qu in the yo form of the preterite (to keep the hard k sound): -qué. You need the yo form.";
+  if (k===0 && /gar$/.test(v)) return "Verbs ending in -gar change g → gu in the yo form of the preterite: -gué. You need the yo form.";
+  if (k===0 && /zar$/.test(v)) return "Verbs ending in -zar change z → c in the yo form of the preterite: -cé. You need the yo form.";
+  return "'" + v + "' is regular in the preterite. " + ends + " You need " + who + ".";
+}
+
+/* ---------- SCORING ---------- */
+const deacc = s => s.normalize("NFD").replace(/[̀-̂̈]/g,"").normalize("NFC");
+function clean(s){
+  return s.toLowerCase().replace(/[.,;:!?¡¿"«»]/g,"").trim().replace(/\s+/g," ")
+    .replace(/^(yo|tú|tu|él|el|ella|usted|nosotros|nosotras|vosotros|vosotras|ellos|ellas|ustedes)\s+/,"");
+}
+function lev(a,b){
+  const m=a.length,n=b.length; if(!m) return n; if(!n) return m;
+  let prev=Array.from({length:n+1},(_,j)=>j);
+  for(let i=1;i<=m;i++){ const cur=[i];
+    for(let j=1;j<=n;j++) cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+    prev=cur; }
+  return prev[n];
+}
+/* Returns {pts:0-10, kind} for how close an answer is to the correct form. */
+function closeness(ans,it){
+  const [,v,,a,alt] = it;
+  if (!ans) return {pts:0,kind:"empty"};
+  if (ans===a) return {pts:10,kind:"exact"};
+  const A=deacc(ans), C=deacc(a), L=deacc(alt);
+  if (A===C) return {pts:8,kind:"accent"};
+  if (ans===alt || A===L) return {pts:5,kind:"tense"};
+  if (A===deacc(v)) return {pts:1,kind:"infinitive"};
+  const d=lev(A,C), dl=lev(A,L), sim=Math.max(0,1-d/Math.max(A.length,C.length));
+  let pts=Math.round(sim*7);
+  if (dl<d) return {pts:Math.min(pts,4),kind:"tenseish"};
+  return {pts:Math.max(0,Math.min(pts,7)),kind:"form"};
+}
+const CAP = [10,8,6];
+const MAX_TRIES = 3;
+
+/* ---------- STATE ---------- */
+const SAVE_KEY = "valdelira-pret-imp-v1";
+let S;
+function fresh(){ return {screen:"intro", r:0, i:0, tries:0, best:0, clues:[], last:"", done:false, earned:0, scores:ROUNDS.map(()=>null), rows:[]}; }
+function save(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify({scores:S.scores})); }catch(e){} }
+function load(){ try{ const d=JSON.parse(localStorage.getItem(SAVE_KEY)||"null"); if(d&&Array.isArray(d.scores)&&d.scores.length===ROUNDS.length) return d.scores; }catch(e){} return null; }
+
+const app = document.getElementById("app");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tcls = t => t==="P" ? "p" : "i";
+const tname = t => t==="P" ? "Pretérito" : "Imperfecto";
+const level = pts => pts>=9 ? "g" : pts>=5 ? "m" : "b";
+const total = () => S.scores.reduce((a,b)=>a+(b?b.total:0),0);
+
+function setScorebox(){
+  const sb=document.getElementById("scorebox");
+  if (S.screen==="intro"){ sb.hidden=true; return; }
+  sb.hidden=false;
+  const roundPts = S.rows.reduce((a,b)=>a+b.pts,0);
+  sb.innerHTML = S.screen==="final"
+    ? "Total <strong>"+total()+"</strong> / 1000"
+    : "Ronda "+(S.r+1)+" · <strong>"+roundPts+"</strong> pts<br>Total "+(total()+(S.screen==="play"?roundPts:0))+" / 1000";
+}
+
+/* ---------- SCREENS ---------- */
+function renderIntro(){
+  const saved = S.scores;
+  const next = saved.findIndex(x=>!x);
+  const anyDone = saved.some(Boolean);
+  app.innerHTML = `
+  <div class="card">
+    <span class="eyebrow">Gramática · Pasado</span>
+    <h1>¿Pretérito o imperfecto?</h1>
+    <p>A year at the Internado Valdelira, a boarding school in the Spanish sierra. Read each sentence, decide which past tense fits the context, and type the correct form of the verb.</p>
+    <div class="legend">
+      <div class="lg p"><h3><span class="mark p"></span>Pretérito</h3>
+        <ul><li>Completed actions at a specific time</li><li>Sudden events and interruptions</li><li>A sequence of events: first this, then that</li>
+        <li>Triggers: <i>ayer, anoche, el lunes, de repente, una vez, al final</i></li></ul></div>
+      <div class="lg i"><h3><span class="mark i"></span>Imperfecto</h3>
+        <ul><li>Habits and repeated actions</li><li>Descriptions, age, time, weather, feelings</li><li>Actions in progress, often with <i>mientras</i></li>
+        <li>Triggers: <i>siempre, todos los días, normalmente, cada…, mientras</i></li></ul></div>
+    </div>
+    <div class="rules">
+      <div class="rule"><b>10</b>points for the exact form on your first try. Close answers earn partial points.</div>
+      <div class="rule"><b>8</b>points maximum once you need a second try. Wrong first? You get a clue.</div>
+      <div class="rule"><b>3</b>tries per verb. A third try is worth up to 6 points.</div>
+    </div>
+    <div class="rounds">${ROUNDS.map((r,k)=>`<div class="rchip ${saved[k]?"done":""}"><b>R${k+1}${saved[k]?" · "+saved[k].total:""}</b>${esc(r.t)}</div>`).join("")}</div>
+    <div class="btnrow">
+      ${anyDone && next>0 ? `<button class="btn" id="cont">Continuar: ronda ${next+1}</button><button class="btn ghost" id="restart">Empezar de nuevo</button>`
+        : `<button class="btn" id="start">Empezar la ronda 1</button>`}
+    </div>
+  </div>`;
+  const st=document.getElementById("start"), co=document.getElementById("cont"), re=document.getElementById("restart");
+  if (st) st.onclick=()=>startRound(0);
+  if (co) co.onclick=()=>startRound(next);
+  if (re) re.onclick=()=>{ S.scores=ROUNDS.map(()=>null); save(); startRound(0); };
+  if (anyDone && next===-1){ // all done: offer final screen
+    app.querySelector(".btnrow").innerHTML = `<button class="btn" id="fin">Ver resultado final</button><button class="btn ghost" id="restart2">Empezar de nuevo</button>`;
+    document.getElementById("fin").onclick=()=>{S.screen="final";render();};
+    document.getElementById("restart2").onclick=()=>{ S.scores=ROUNDS.map(()=>null); save(); startRound(0); };
+  }
+}
+
+function startRound(r){ Object.assign(S,{screen:"play",r,i:0,rows:[]}); resetItem(); render(); }
+function resetItem(){ Object.assign(S,{tries:0,best:0,clues:[],last:"",done:false,earned:0}); }
+
+function renderPlay(){
+  const R = ROUNDS[S.r], it = R.items[S.i];
+  const [s,v,p,a,,t,why] = it;
+  const parts = s.split("___");
+  const dots = R.items.map((_,k)=>{
+    if (k<S.rows.length) return `<span class="dot ${level(S.rows[k].pts)}"></span>`;
+    return `<span class="dot ${k===S.i?"now":""}"></span>`;
+  }).join("");
+  const filled = S.done ? `<span class="filled ${tcls(t)}">${esc(S.i===0&&false?a:(parts[0]===""?a[0].toUpperCase()+a.slice(1):a))}</span>` : "";
+  const blank = S.done ? filled : `<input id="ans" class="blank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Escribe el verbo ${esc(v)}" value="${esc(S.last)}">`;
+  const clues = S.clues.map(c=>`<p>${c}</p>`).join("");
+  let result = "";
+  if (S.done){
+    result = `<div class="result ${level(S.earned)}">
+      <div class="resulthead"><span class="pts">+${S.earned}</span>
+        <span class="pill ${tcls(t)}"><span class="mark ${tcls(t)}"></span>${tname(t)}</span>
+        <span class="pill">${esc(verbType(it))}</span></div>
+      <p>${S.earned===10 ? "¡Perfecto! " : S.best===10 ? "¡Bien! You got it in "+S.tries+" tries. " : "The answer is <strong>"+esc(a)+"</strong>. "}${esc(why)}</p>
+      ${verbType(it)!=="Regular" ? `<p class="muted">${esc(formHint(it))}</p>` : ""}
+      <div class="btnrow"><button class="btn" id="next">${S.i<9 ? "Siguiente frase" : "Ver resultados de la ronda"}</button></div>
+    </div>`;
+  }
+  app.innerHTML = `
+  <div class="card">
+    <div class="roundhead">
+      <div><span class="eyebrow">Ronda ${S.r+1} de 10 · ${esc(R.en)}</span><h2>${esc(R.t)}</h2></div>
+      <div class="dots" aria-label="Frase ${S.i+1} de 10">${dots}</div>
+    </div>
+    ${S.i===0 && !S.done && S.tries===0 ? `<p class="muted">${esc(R.intro)}</p>` : ""}
+    <p class="sentence">${esc(parts[0])}${blank}${esc(parts[1]||"")}</p>
+    <div class="verb"><span class="muted">Verbo:</span><span class="pill inf">${esc(v)}</span><span class="pill">${esc(p)}</span>
+      <span class="muted">· Frase ${S.i+1} de 10</span></div>
+    ${S.done ? "" : `
+    <div class="keys" aria-label="Acentos">${["á","é","í","ó","ú","ü","ñ"].map(k=>`<button class="key" data-k="${k}" type="button">${k}</button>`).join("")}</div>
+    <div class="notice" id="notice" role="status"></div>
+    <div class="btnrow">
+      <button class="btn" id="check">Comprobar</button>
+      ${S.tries>0 ? `<button class="btn quiet" id="reveal">Ver la respuesta</button>` : ""}
+      <span class="tries">${S.tries===0 ? "Intento 1 de 3 · hasta 10 puntos" : "Intento "+(S.tries+1)+" de 3 · hasta "+CAP[S.tries]+" puntos"}</span>
+    </div>`}
+    ${S.clues.length && !S.done ? `<div class="clue" role="status"><span class="lab">Pista</span>${clues}</div>` : ""}
+    ${result}
+  </div>`;
+  if (!S.done){
+    const inp=document.getElementById("ans");
+    const fit=()=>{ inp.style.width = Math.max(9, inp.value.length+3)+"ch"; };
+    fit(); inp.addEventListener("input",()=>{S.last=inp.value;fit();});
+    inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault();check();} });
+    app.querySelectorAll(".key").forEach(b=>b.onclick=()=>{
+      const st=inp.selectionStart??inp.value.length, en=inp.selectionEnd??st;
+      inp.value=inp.value.slice(0,st)+b.dataset.k+inp.value.slice(en); S.last=inp.value; fit();
+      inp.focus(); inp.setSelectionRange(st+1,st+1);
+    });
+    document.getElementById("check").onclick=check;
+    const rv=document.getElementById("reveal"); if(rv) rv.onclick=()=>finish(Math.min(CAP[S.tries-1], S.best));
+    try{ inp.focus({preventScroll:true}); if(S.tries>0) inp.select(); }catch(e){}
+  } else {
+    const nx=document.getElementById("next"); nx.onclick=advance; try{ nx.focus({preventScroll:true}); }catch(e){}
+  }
+}
+
+function check(){
+  const it = ROUNDS[S.r].items[S.i];
+  const inp = document.getElementById("ans");
+  const ans = clean(inp.value);
+  if (!ans){ const n=document.getElementById("notice"); n.textContent="Type a form of the verb first."; inp.classList.remove("shake"); void inp.offsetWidth; inp.classList.add("shake"); return; }
+  S.tries++; S.last=inp.value;
+  const c = closeness(ans,it);
+  S.best = Math.max(S.best, c.pts);
+  if (c.pts===10){ finish(Math.min(CAP[S.tries-1],10)); return; }
+  if (S.tries>=MAX_TRIES){ finish(Math.min(CAP[MAX_TRIES-1], S.best)); return; }
+  S.clues = [clueFor(c,it,S.tries)];
+  render();
+}
+
+function clueFor(c,it,attempt){
+  const [,,,a,alt,t,why] = it;
+  const other = t==="P" ? "imperfect" : "preterite", right = t==="P" ? "preterite" : "imperfect";
+  let msg;
+  switch(c.kind){
+    case "accent": msg = "So close! The letters are right, but check your accent marks. "+(/[áéíóú]/.test(a) ? "This form needs a written accent." : "This form has no written accent."); break;
+    case "tense": msg = "Your conjugation is correct, but it's the <strong>"+other+"</strong>. Look at the context again: "+esc(why); break;
+    case "tenseish": msg = "That looks closer to the "+other+". Think about which tense the context needs: "+esc(why)+" "+esc(formHint(it)); break;
+    case "infinitive": msg = "That's the infinitive. You need to conjugate it. Which tense? "+esc(why)+" "+esc(formHint(it)); break;
+    default: msg = "Not quite. Which tense? "+esc(why)+" Then check the form: "+esc(formHint(it));
+  }
+  if (attempt>=2){
+    const n = Math.max(2, Math.ceil(a.length/2));
+    msg += " <strong>Extra clue:</strong> it begins with “"+esc(a.slice(0,n))+"…” and has "+a.length+" letters.";
+  }
+  return msg;
+}
+
+function finish(pts){
+  const it = ROUNDS[S.r].items[S.i];
+  S.done=true; S.earned=Math.max(0,pts);
+  S.rows.push({pts:S.earned, tries:S.tries||1, first:S.tries===1&&S.earned===10, t:it[5], type:verbType(it)});
+  render();
+}
+
+function advance(){
+  if (S.i<9){ S.i++; resetItem(); render(); return; }
+  const tot = S.rows.reduce((a,b)=>a+b.pts,0);
+  S.scores[S.r] = {total:tot, rows:S.rows.map(r=>r.pts)};
+  save();
+  S.screen="roundEnd"; render();
+}
+
+const PRAISE = {
+  top:[["¡Fenomenal!","You clearly know when to use each tense. Keep that momentum going into the next round."],
+       ["¡Matrícula de honor!","That's top-of-the-class work. Your conjugations are sharp."],
+       ["¡Qué crack!","Almost flawless. The teachers at Valdelira would be proud."]],
+  good:[["¡Muy bien!","Solid round. A few small slips, but you are reading the context well."],
+        ["¡Buen trabajo!","You're getting the feel for these tenses. Keep looking for the trigger words."]],
+  mid:[["¡Vas por buen camino!","You're on the right track. Each clue you used is a pattern you'll recognise next time."],
+       ["¡Ánimo!","Good effort. Slow down on each sentence and ask: is this a single event, or background?"]],
+  low:[["¡No te rindas!","Don't give up. These two tenses take practice for every Spanish learner, and the clues will help you build the pattern."],
+       ["¡Paso a paso!","Step by step. Review the trigger words on the cards and try the next round fresh."]]
+};
+const pick = a => a[Math.floor(Math.random()*a.length)];
+
+function renderRoundEnd(){
+  const R = ROUNDS[S.r], rows=S.rows, tot=rows.reduce((a,b)=>a+b.pts,0);
+  const first = rows.filter(r=>r.first).length;
+  const avg = arr => arr.length ? arr.reduce((a,b)=>a+b.pts,0)/arr.length : 0;
+  const P = rows.filter(r=>r.t==="P"), I = rows.filter(r=>r.t==="I");
+  const irr = rows.filter(r=>r.type!=="Regular"), reg = rows.filter(r=>r.type==="Regular");
+  const tier = tot>=90?"top":tot>=75?"good":tot>=55?"mid":"low";
+  const [es,en] = pick(PRAISE[tier]);
+  let tip;
+  if (avg(P) + 1.5 < avg(I)) tip = "Focus for next round: the <strong>preterite</strong>. Look for single, finished events with a time marker like <i>ayer</i>, <i>el sábado pasado</i> or <i>de repente</i>.";
+  else if (avg(I) + 1.5 < avg(P)) tip = "Focus for next round: the <strong>imperfect</strong>. Watch for habits (<i>siempre, cada día</i>), descriptions, age, time, and actions in progress with <i>mientras</i>.";
+  else if (irr.length && reg.length && avg(irr) + 1.5 < avg(reg)) tip = "Your tense choices are balanced. The tricky part was the <strong>irregular forms</strong>: review stems like <i>tuv-, pus-, hic-, dij-</i> and the spelling changes <i>-qué, -gué, -cé</i>.";
+  else if (tot>=90) tip = "Your tense choices and your conjugations were both strong. Try to get every verb on the first try next round.";
+  else tip = "Your scores were similar for both tenses. Before typing, say to yourself why the action is a completed event or background. That habit pays off quickly.";
+  const its = R.items;
+  app.innerHTML = `
+  <div class="card">
+    <span class="eyebrow">Fin de la ronda ${S.r+1} · ${esc(R.t)}</span>
+    <div class="big">${tot}<small> / 100</small></div>
+    <div class="encourage"><span class="es">${es}</span><p>${en}</p></div>
+    <div class="stats">
+      <div class="stat"><b>${first} / 10</b><span>right on the first try</span></div>
+      <div class="stat"><b>${P.reduce((a,b)=>a+b.pts,0)} / ${P.length*10}</b><span>points on pretérito verbs</span></div>
+      <div class="stat"><b>${I.reduce((a,b)=>a+b.pts,0)} / ${I.length*10}</b><span>points on imperfecto verbs</span></div>
+    </div>
+    <p>${tip}</p>
+    <h3>Repaso de la ronda</h3>
+    <div class="review">${its.map((it,k)=>{
+      const parts=it[0].split("___"), a=parts[0]===""?it[3][0].toUpperCase()+it[3].slice(1):it[3];
+      return `<div class="rv"><span class="n">${k+1}</span><span class="s">${esc(parts[0])}<span class="filled ${tcls(it[5])}">${esc(a)}</span>${esc(parts[1]||"")}<em>${tname(it[5])} · ${esc(verbType(it))}${rows[k].tries>1?" · "+rows[k].tries+" tries":""}</em></span><span class="p" style="color:var(--${({g:"good",m:"mid",b:"bad"})[level(rows[k].pts)]})">${rows[k].pts}</span></div>`;
+    }).join("")}</div>
+    <div class="btnrow">
+      ${S.r<9 ? `<button class="btn" id="go">Empezar la ronda ${S.r+2}</button>` : `<button class="btn" id="go">Ver resultado final</button>`}
+      <button class="btn ghost" id="home">Menú</button>
+    </div>
+  </div>`;
+  document.getElementById("go").onclick = ()=>{ if(S.r<9) startRound(S.r+1); else {S.screen="final";render();} };
+  document.getElementById("home").onclick = ()=>{S.screen="intro";render();};
+  try{ document.getElementById("go").focus({preventScroll:true}); }catch(e){}
+  window.scrollTo({top:0});
+}
+
+function renderFinal(){
+  const tot = total();
+  const msg = tot>=900 ? ["¡Sobresaliente!","An outstanding year at Valdelira. You've mastered the difference between the preterite and the imperfect."]
+    : tot>=750 ? ["¡Notable!","A great year. You read context well and handle most irregular verbs with confidence."]
+    : tot>=550 ? ["¡Bien hecho!","You've built a strong foundation. Replay the rounds where you scored lowest to lock in the patterns."]
+    : ["¡Has terminado el curso!","Finishing all ten rounds takes persistence. Play again and watch your score climb as the patterns become automatic."];
+  app.innerHTML = `
+  <div class="card">
+    <span class="eyebrow">Fin de curso · Resultado final</span>
+    <div class="big">${tot}<small> / 1000</small></div>
+    <div class="encourage"><span class="es">${msg[0]}</span><p>${msg[1]}</p></div>
+    <h3>Puntos por ronda</h3>
+    <div class="bars">${ROUNDS.map((r,k)=>{ const v=S.scores[k]?S.scores[k].total:0;
+      return `<div class="bar"><span>R${k+1} · ${esc(r.t.split(" ").slice(-1)[0])}</span><span class="track"><span class="fill" style="width:${v}%;display:block"></span></span><span class="v">${v}</span></div>`; }).join("")}</div>
+    <div class="btnrow"><button class="btn" id="again">Jugar otra vez</button><button class="btn ghost" id="home">Menú</button></div>
+  </div>`;
+  document.getElementById("again").onclick=()=>{ S.scores=ROUNDS.map(()=>null); save(); startRound(0); };
+  document.getElementById("home").onclick=()=>{S.screen="intro";render();};
+  window.scrollTo({top:0});
+}
+
+function render(){
+  setScorebox();
+  if (S.screen==="intro") renderIntro();
+  else if (S.screen==="play") renderPlay();
+  else if (S.screen==="roundEnd") renderRoundEnd();
+  else renderFinal();
+}
+
+function start(data){
+  S = (data && data.S) ? data.S : fresh();
+  if (!(data && data.S)){ const sv=load(); if(sv) S.scores=sv; }
+  render();
+}
+window.claude?.hot?.snapshot?.(()=>({S}));
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+</script>
+
+</body></html>
